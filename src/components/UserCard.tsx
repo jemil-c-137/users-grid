@@ -1,19 +1,21 @@
 import React from 'react';
 import { User } from '../Redux/types';
+import { Link } from 'react-router-dom';
 import '../index.css';
+import styles from './UserCard.module.css';
 
-const UserCard = ({ firstName, lastName, image }: User) => {
+const UserCard = ({ firstName, lastName, image, id }: User) => {
   return (
-    <div
-      style={{
-        backgroundImage: `url(${image})`,
-        marginBottom: '1rem',
-        padding: '1rem',
-        borderRadius: '4px',
-        backgroundRepeat: 'no-repeat',
-      }}>
-      <div>{firstName}</div>
-      <div>{lastName}</div>
+    <div className={styles.container}>
+      <div className={styles.image}>
+        <img src={image} />
+      </div>
+      <div className={styles.name}>
+        <Link to={`/user/${id}`} className={styles.link}>
+          <div>{firstName}</div>
+          <div>{lastName}</div>
+        </Link>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,13 @@
+.card {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 1rem;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1440px;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { fetchUsers } from '../Redux/actions';
 import { InitialState } from '../Redux/store';
 import UserCard from './UserCard';
+import styles from './UserList.module.css';
 
 const UsersList = () => {
   const [query, setQuery] = useState('https://dummyjson.com/users');
@@ -10,20 +12,29 @@ const UsersList = () => {
   const dispatch = useDispatch();
 
   const users = useSelector((state: InitialState) => state.users);
+  const loading = useSelector((state: InitialState) => state.loading);
+
+  console.log(loading);
 
   console.log(users, 'users');
 
   useEffect(() => {
-    dispatch(fetchUsers(query));
-  }, [query]);
+    if (users.length === 0) {
+      dispatch(fetchUsers(query));
+    }
+  }, [query, users, dispatch]);
 
   return (
-    <div style={{ margin: '0 auto', maxWidth: '1440px' }}>
-      {users.map((user) => (
-        <div key={user.id} style={{ maxWidth: '100px', margin: '0 auto', height: 'auto' }}>
-          <UserCard {...user} />
-        </div>
-      ))}
+    <div className={styles.wrapper}>
+      {loading ? (
+        <p>loading</p>
+      ) : (
+        users.map((user) => (
+          <div key={user.id} className={styles.card}>
+            <UserCard {...user} />
+          </div>
+        ))
+      )}
     </div>
   );
 };
