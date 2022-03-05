@@ -1,7 +1,7 @@
-import { initialState } from '../store';
+import { InitialState, initialState } from '../store';
 import { Actions } from '../actions';
 
-const rootReducer = (state = initialState, action: Actions) => {
+const rootReducer = (state = initialState, action: Actions): InitialState => {
   switch (action.type) {
     case 'ADD_USERS': {
       return {
@@ -21,6 +21,12 @@ const rootReducer = (state = initialState, action: Actions) => {
         ...state,
         userPage: action.user,
         loading: false,
+      };
+    }
+    case 'DELETE_USER': {
+      return {
+        ...state,
+        users: state.users.filter((user) => user.id !== action.userId),
       };
     }
     default: {

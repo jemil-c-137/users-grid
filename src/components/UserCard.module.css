@@ -31,3 +31,11 @@
   text-decoration: none;
   color: black;
 }
+
+.deleteBtn {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}

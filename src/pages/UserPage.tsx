@@ -18,7 +18,7 @@ const UserPage = () => {
     if (id) {
       dispatch(fetchUserById(query, parseInt(id)));
     }
-  }, [query]);
+  }, [query, dispatch, id]);
 
   return <div>{loading ? <p>loading</p> : <UserFullCard {...userPage} />}</div>;
 };

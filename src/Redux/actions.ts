@@ -18,6 +18,11 @@ export interface setLoading {
   loading: boolean;
 }
 
+export interface deleteUser {
+  type: 'DELETE_USER';
+  userId: number;
+}
+
 export const addUsersActionCreator = (users: User[]): addUsers => {
   return {
     type: 'ADD_USERS',
@@ -36,6 +41,13 @@ export const setLoadingActionCreator = (loading: boolean): setLoading => {
   return {
     type: 'SET_LOADING',
     loading,
+  };
+};
+
+export const deleteUserActionCreator = (userId: number): deleteUser => {
+  return {
+    type: 'DELETE_USER',
+    userId,
   };
 };
 
@@ -73,4 +85,4 @@ export const fetchUserById = (query: string, id: number): ThunkAction<Promise<vo
   };
 };
 
-export type Actions = addUsers | addUserPage | setLoading;
+export type Actions = addUsers | addUserPage | setLoading | deleteUser;
