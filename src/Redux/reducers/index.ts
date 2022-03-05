@@ -23,6 +23,12 @@ const rootReducer = (state = initialState, action: Actions): InitialState => {
         loading: false,
       };
     }
+    case 'ADD_USER': {
+      return {
+        ...state,
+        users: [...state.users, { ...action.user, id: state.users.length + 1 }],
+      };
+    }
     case 'DELETE_USER': {
       return {
         ...state,

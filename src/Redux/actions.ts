@@ -23,10 +23,22 @@ export interface deleteUser {
   userId: number;
 }
 
+export interface addUser {
+  type: 'ADD_USER';
+  user: Omit<UserFull, 'id'>;
+}
+
 export const addUsersActionCreator = (users: User[]): addUsers => {
   return {
     type: 'ADD_USERS',
     users,
+  };
+};
+
+export const addUserActionCreator = (user: Omit<UserFull, 'id'>): addUser => {
+  return {
+    type: 'ADD_USER',
+    user,
   };
 };
 
@@ -85,4 +97,4 @@ export const fetchUserById = (query: string, id: number): ThunkAction<Promise<vo
   };
 };
 
-export type Actions = addUsers | addUserPage | setLoading | deleteUser;
+export type Actions = addUsers | addUserPage | setLoading | deleteUser | addUser;
